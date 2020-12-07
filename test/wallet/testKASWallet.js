@@ -450,6 +450,7 @@ describe('caver.wallet with KASWallet', () => {
             expect(fdRawRequestSpy.called).not.to.be.true
             expect(appendSignaturesSpy.called).not.to.be.true
             expect(signed.signatures.length).to.equal(1)
+            console.log(signed)
         }).timeout(50000)
     })
 
