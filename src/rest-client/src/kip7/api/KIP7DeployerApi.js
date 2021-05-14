@@ -1,6 +1,6 @@
 /*
  * KIP-7 API
- * # Introduction KIP-7 API is a RESTful API for managing KIP-7 contracts and tokens that follow the [KIP-7 Fungible Token Standard](https://kips.klaytn.com/KIPs/kip-7).   You can deploy contracts and send tokens using the default contract managing account (`deployer`) and an `alias`. And by using SDK like caver,  you can manage your contracts and tokens using [Wallet API](https://refs.klaytnapi.com/en/wallet/latest) for contracts created on the Klaytn Network. # Error Codes ## 400: Bad Request  | Code | Messages |   | --- | --- | | 1130050 | incorrect request; spender 1130107 | incorrect bookmark 1134410 | invalid address; to</br>invalid address; owner</br>invalid address; address 1134411 | invalid amount; amount |## 404: Not Found  | Code | Messages | | --- | --- | | 1134504 | contract not found 1134506 | deployer not found |  ## 409: Conflict  | Code | Messages |   | --- | --- |   | 1134900 | duplicate alias 1134902 | contract already paused 1134903 | contract already unpaused |
+ * # Introduction KIP-7 API is a RESTful API for managing KIP-7 contracts and tokens that follow the [KIP-7 Fungible Token Standard](https://kips.klaytn.com/KIPs/kip-7).   You can deploy contracts and send tokens using the default contract managing account (`deployer`) and an `alias`. And by using SDK like caver,  you can manage your contracts and tokens using [Wallet API](https://refs.klaytnapi.com/en/wallet/latest) for contracts created on the Klaytn Network.     # Error Codes  ## 400: Bad Request   | Code | Messages |   | --- | --- |  | 1130050 | incorrect request; spender 1130107 | incorrect bookmark 1134410 | invalid address; to</br>invalid address; owner</br>invalid address; address 1134411 | invalid amount; amount |  ## 404: Not Found   | Code | Messages |  | --- | --- |  | 1134504 | contract not found 1134506 | deployer not found |   ## 409: Conflict   | Code | Messages |   | --- | --- |   | 1134900 | duplicate alias 1134902 | contract already paused 1134903 | contract already unpaused |
  *
  * OpenAPI spec version: 1.0
  *
@@ -25,28 +25,28 @@
         if (!root.Kip7Api) {
             root.Kip7Api = {}
         }
-        root.Kip7Api.Kip7DeployerApi = factory(root.Kip7Api.ApiClient, root.Kip7Api.ErrorResponse, root.Kip7Api.Kip7DeployerResponse)
+        root.Kip7Api.KIP7DeployerApi = factory(root.Kip7Api.ApiClient, root.Kip7Api.ErrorResponse, root.Kip7Api.Kip7DeployerResponse)
     }
 })(this, function(ApiClient, ErrorResponse, Kip7DeployerResponse) {
     /**
-     * Kip7Deployer service.
-     * @class Kip7DeployerApi
+     * KIP7Deployer service.
+     * @class KIP7DeployerApi
      * @version 1.0
      */
 
     /**
-     * Constructs a new Kip7DeployerApi.
-     * @alias Kip7DeployerApi
+     * Constructs a new KIP7DeployerApi.
+     * @alias KIP7DeployerApi
      * @class
      * @param {ApiClient} [apiClient] Optional API client implementation to use,
      * default to {@link ApiClient#instance} if unspecified.
      */
-    const Kip7DeployerApi = function(apiClient) {
+    const KIP7DeployerApi = function(apiClient) {
         this.apiClient = apiClient || ApiClient.instance
 
         /**
          * Callback function to receive the result of the getDefaultDeployer operation.
-         * @callback Kip7DeployerApi~getDefaultDeployerCallback
+         * @callback KIP7DeployerApi~getDefaultDeployerCallback
          * @param {String} error Error message, if any.
          * @param {Kip7DeployerResponse} data The data returned by the service call.
          * @param {String} response The complete HTTP response.
@@ -54,14 +54,13 @@
 
         /**
          * GetDefaultDeployer
-         * Queries the account that deploys and manages the KIP-7 contracts. `deployer` will automatically be created during the initial contract deployment.<p></p>
+         * Queries the account that deploys and manages the KIP-7 contracts.  `deployer` will automatically be created during the initial contract deployment.<p></p>
          * @param {String} xChainId Klaytn Network Chain ID (1001 or 8217)
-         * @param {Kip7DeployerApi~getDefaultDeployerCallback} callback The callback function, accepting three arguments: error, data, response
+         * @param {KIP7DeployerApi~getDefaultDeployerCallback} callback The callback function, accepting three arguments: error, data, response
          * data is of type: {@link Kip7DeployerResponse}
          */
         this.getDefaultDeployer = function(xChainId, callback) {
             const postBody = null
-
             // verify the required parameter 'xChainId' is set
             if (xChainId === undefined || xChainId === null) {
                 throw new Error("Missing the required parameter 'xChainId' when calling getDefaultDeployer")
@@ -79,7 +78,6 @@
             const contentTypes = ['application/json']
             const accepts = ['application/json']
             const returnType = Kip7DeployerResponse
-
             return this.apiClient.callApi(
                 '/v1/deployer/default',
                 'GET',
@@ -98,5 +96,5 @@
         }
     }
 
-    return Kip7DeployerApi
+    return KIP7DeployerApi
 })
